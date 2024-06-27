@@ -34,5 +34,16 @@ public class EmployeeController {
         return employeeService.getEmployeeById(id);
     }
 
+    @PutMapping("/{id}")
+    //Belirtilen kimlikteki çalışan bilgilerini bu metod ile güncelliyoruz.
+    public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employeeDetails) {
+        return employeeService.updateEmployee(id, employeeDetails);
+    }
+
+    @DeleteMapping("/fire/{id}")
+    public void fireEmployees(@PathVariable Long id) {
+        employeeService.fireEmployee(id);
+    }
+
 
 }
