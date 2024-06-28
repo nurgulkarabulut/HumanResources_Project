@@ -39,15 +39,18 @@ public class EmployeeService {
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Çalışan bulunamadı"));
 
         // orElse yani if döngüsünün else kısmı gibi düşünülebilir.Aranan çalışan bulunmadığındanda kullanıcıya bu metini döndürür.
-        employee.setName(employeeDetails.getName());
-        employee.setPosition(employeeDetails.getPosition());
+        employee.setFirstName(employeeDetails.getFirstName());
+        employee.setLastName(employeeDetails.getLastName());
+        employee.setJobTitle(employeeDetails.getJobTitle());
+        employee.setIban(employeeDetails.getIban());
+        employee.setId(employee.getId());
         return employeeRepository.save(employee);
     }
 
-    public void fireEmployee(Long id){
+    public void fireEmployee(Long id) {
 
         //Belirtilen kimlikteki çalışanı silen metottur.
-        Employee employee = employeeRepository.findById(id).orElseThrow(()-> new RuntimeException("Çalışan bulunamadı"));
+        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Çalışan bulunamadı"));
 
         //silme işlemini yapan "delete" methodunu JPA repository içerisinden çağırarak kullandık.
         employeeRepository.delete(employee);
