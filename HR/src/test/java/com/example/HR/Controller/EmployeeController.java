@@ -3,6 +3,8 @@ package com.example.HR.Controller;
 import com.example.HR.Model.Employee;
 import com.example.HR.Service.EmployeeService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,11 @@ public class EmployeeController {
 
     @PostMapping("/hire")
     @Operation(summary = "Yeni personel kaydı yapar.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Personel başarıyla kaydedildi"),
+            @ApiResponse(responseCode = "400", description = "Hatalı istek")
+    })
+
     //Bu anotasyon ile işaretlenen bu metot, bir çalışanı işe almak için kullanılır.
     public Employee hireEmployee(@RequestBody Employee employee) {
         return employeeService.hireEmployee(employee);
